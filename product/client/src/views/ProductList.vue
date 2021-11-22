@@ -15,8 +15,8 @@
         <div class="row g-3">
           <div class="col-xl-3 col-lg-4 col-md-6" :key="i" v-for="(product,i) in productList">
             <div class="card" style="width: 18rem">
-              <a href="product_detail.html"
-                ><img
+              <a @click="goToDetail(product.id)" style="cursor:pointer">
+                <img
                   :src="product.thumbnail_image_path"
                   height="300"
                   class="card-img-top"
@@ -78,6 +78,9 @@ export default{
       .then((res)=>{
         this.productList = res.data.data;
       });
+    },
+    goToDetail(product_id){
+      this.$router.push({path:'/detail', query:{product_id:product_id}})
     }
   }
 }
